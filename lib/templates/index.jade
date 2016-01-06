@@ -1,0 +1,34 @@
+extends ./layouts/main.jade
+
+block content
+  #wrapper
+    #calculator
+      input#display(type="text")
+      //- First Row
+      a.btn-grey.ac(href="#") AC
+      a.btn-grey.sign(href="#") +/-
+      a.btn-grey.percent(href="#") %
+      a.btn-orange.division(href="#") /
+      
+      //- Second Row
+      a.btn-grey.seven(href="#") 7
+      a.btn-grey.eight(href="#") 8
+      a.btn-grey.nine(href="#") 9
+      a.btn-orange.times(href="#") x
+      
+      //- Third Row
+      a.btn-grey.four(href="#") 4
+      a.btn-grey.five(href="#") 5
+      a.btn-grey.six(href="#") 6
+      a.btn-orange.minus(href="#") -
+      
+      //- Fourth Row
+      a.btn-grey.one(href="#") 1
+      a.btn-grey.two(href="#") 2
+      a.btn-grey.three(href="#") 3
+      a.btn-orange.plus(href="#") +
+      
+      //- Fifth Row
+      a.btn-double.zero(href="#") 0
+      a.btn-grey.dot(href="#") .
+      a.btn-orange.equals(href="#") =

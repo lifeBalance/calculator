@@ -1,0 +1,177 @@
+@import 'micro_clearfix';
+@import 'meyer_reset';
+
+// Variables
+$green-bg: #B2DC44;
+$pink: rgba(245, 45, 167, .23);
+$white: #FFF;
+$black: #000;
+$item: 57px;
+$item-double: 114px;
+
+a, input {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a.btn-orange {
+  text-decoration: none;
+  color: $white;
+}
+
+a.btn-grey, a.btn-double {
+  text-decoration: none;
+  color: $black;
+}
+
+#wrapper {
+  width: 233px;
+  margin: 1em auto;
+}
+
+#calculator {
+  width: 233px;
+  height: 324px;
+  background:  url(../images/frame.png) no-repeat;
+  position: relative;
+}
+
+#display {
+  background-color: $pink; // Remove when finished
+  border: none;
+  position: absolute;
+  top: 25px;
+  width: 231px;
+  text-align: right;
+  font: 37px "Arial Black", Arial, Sans-Serif;
+}
+
+.btn-grey {
+  width: 57px;
+  height: 49px;
+  // padding: 3px 0 0 0;
+  text-align: center;
+  background: url(../images/grey.png) no-repeat;
+  position: absolute;
+  display: block;
+  padding-top: 1em;
+}
+.btn-orange {
+  width: 57px;
+  height: 49px;
+  // padding: 3px 0 0 0;
+  text-align: center;
+  background: url(../images/orange.png) no-repeat;
+  position: absolute;
+  display: block;
+  padding-top: 1em;
+}
+.btn-double {
+  width: 114px;
+  height: 49px;
+  // padding: 3px 0 0 0;
+  text-align: center;
+  background: url(../images/double.png) no-repeat;
+  position: absolute;
+  display: block;
+  padding-top: 1em;
+}
+
+// First row
+.ac {
+  top: 82px;
+  left: 3px;
+}
+
+.sign {
+  top: 82px;
+  left: 60px;
+}
+
+.percent {
+  top: 82px;
+  left: 117px;
+}
+
+.division {
+  top: 82px;
+  left: 175px;
+}
+
+// Second row
+.seven {
+  top: 130px;
+  left: 3px;
+}
+
+.eight {
+  top: 130px;
+  left: 60px;
+}
+
+.nine {
+  top: 130px;
+  left: 117px;
+}
+
+.times {
+  top: 130px;
+  left: 175px;
+}
+
+// Third row
+.four {
+  top: 179px;
+  left: 3px;
+}
+
+.five {
+  top: 179px;
+  left: 60px;
+}
+
+.six {
+  top: 179px;
+  left: 117px;
+}
+
+.minus {
+  top: 179px;
+  left: 175px;
+}
+
+// Fourth row
+.one {
+  top: 227px;
+  left: 3px;
+}
+
+.two {
+  top: 227px;
+  left: 60px;
+}
+
+.three {
+  top: 227px;
+  left: 117px;
+}
+
+.plus {
+  top: 227px;
+  left: 175px;
+}
+
+// Fifth row
+.zero {
+  top: 275px;
+  left: 4px;
+}
+
+.dot {
+  top: 275px;
+  left: 117px;
+}
+
+.equals {
+  top: 275px;
+  left: 174px;
+}
