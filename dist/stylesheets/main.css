@@ -83,6 +83,12 @@ a.btn-grey, a.btn-double {
   text-decoration: none;
   color: #000; }
 
+a.btn-orange:active {
+  background: url(../images/orange-pressed.png) no-repeat; }
+
+a.btn-grey:active, a.btn-double:active {
+  background: url(../images/grey-pressed.png) no-repeat; }
+
 #wrapper {
   width: 233px;
   margin: 1em auto; }
@@ -94,13 +100,15 @@ a.btn-grey, a.btn-double {
   position: relative; }
 
 #display {
-  background-color: rgba(245, 45, 167, 0.23);
+  background-color: transparent;
+  color: #FFF;
   border: none;
   position: absolute;
   top: 25px;
   width: 231px;
   text-align: right;
-  font: 37px "Arial Black", Arial, Sans-Serif; }
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em; }
 
 .btn-grey {
   width: 57px;
@@ -162,45 +170,45 @@ a.btn-grey, a.btn-double {
   left: 175px; }
 
 .four {
-  top: 179px;
+  top: 178px;
   left: 3px; }
 
 .five {
-  top: 179px;
+  top: 178px;
   left: 60px; }
 
 .six {
-  top: 179px;
+  top: 178px;
   left: 117px; }
 
 .minus {
-  top: 179px;
+  top: 178px;
   left: 175px; }
 
 .one {
-  top: 227px;
+  top: 226px;
   left: 3px; }
 
 .two {
-  top: 227px;
+  top: 226px;
   left: 60px; }
 
 .three {
-  top: 227px;
+  top: 226px;
   left: 117px; }
 
 .plus {
-  top: 227px;
+  top: 226px;
   left: 175px; }
 
 .zero {
-  top: 275px;
+  top: 274px;
   left: 4px; }
 
 .dot {
-  top: 275px;
+  top: 274px;
   left: 117px; }
 
 .equals {
-  top: 275px;
+  top: 274px;
   left: 174px; }
