@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var display = 0;
   var signState = '';
+  var decimalState = false;
   var str;
 
   // Set the display to '0' at the beginning.
@@ -10,6 +11,7 @@ $(document).ready(function () {
   // Also triggered when the 'All Clear' is clicked.
   function initialize() {
     str = '0';
+    decimalState = false;
     $('#display').val(str);
   }
 
@@ -48,13 +50,25 @@ $(document).ready(function () {
     var arr = [];
 
     if (signState === '' && display > 0) {
-      addMinus(function () {
-        $('#display').val(str);
-      });
+      addMinus(refresh);
     } else {
-      removeMinus(function () {
-        $('#display').val(str);
-      });
+      removeMinus(refresh);
+    }
+  }
+
+  // Refresh display
+  function refresh() {
+    $('#display').val(str);
+  }
+
+  // Add decimal point
+  function addDot(cb) {
+    if (decimalState) {
+      return;
+    } else {
+      decimalState = true;
+      str += '.';
+      cb();
     }
   }
 
@@ -69,6 +83,9 @@ $(document).ready(function () {
     } else if ($(this).data('op') === 'sign') {
       console.log($(this).data('key'), $(this).data('op'));
       toggleSign();
+    } else if ($(this).data('op') === 'dot') {
+      console.log($(this).data('key'), $(this).data('op'));
+      addDot(refresh);
     }
 
     console.log(str);
