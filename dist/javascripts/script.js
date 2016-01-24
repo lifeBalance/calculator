@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  $(function() {
+    $( "#calculator" ).draggable();
+  });
+
   // Some states
   var signState;
 
@@ -47,6 +51,8 @@ $(document).ready(function () {
       // If the first operator is 'equals' we just return.
       if (key.op === 'equals') {
         return;
+      } else if (key.op === 'percentage') {
+        percentage(Number(buffer), refresh);
       }
 
       // Any other operator:
@@ -67,6 +73,12 @@ $(document).ready(function () {
   // We have pressed an operator key, and operationState is true,
   // meaning it's the second time we press an operator key.
   } else if (key.op && key.op !== 'ac' && operationState === true) {
+    if (key.op === 'percentage') {
+      // firstOperand = Number(buffer);
+      // secondOperand = Number(buffer);
+      percentage(firstOperand * Number(buffer), refresh);
+      return;
+    }
       operationState = false;
       secondOperand = Number(buffer);
       doTheMath(refresh);
@@ -149,6 +161,8 @@ $(document).ready(function () {
       return refreshDisplay(firstOperand * secondOperand);
     case 'division':
       return refreshDisplay(divide(firstOperand, secondOperand));
+    case 'percentage':
+      return refreshDisplay(percentage());
     }
   }
 
@@ -159,6 +173,10 @@ $(document).ready(function () {
     } else {
       return a / b;
     }
+  }
+
+  function percentage(num, refreshDisplay) {
+    return refreshDisplay(num / 100);
   }
 
   // Refresh display

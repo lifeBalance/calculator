@@ -2,13 +2,30 @@
 @import 'meyer_reset';
 
 // Variables
-$green-bg: #B2DC44;
-$pink: rgba(245, 45, 167, .23);
 $white: #FFF;
+$orange: #F1933E;
 $black: #000;
 $item: 57px;
 $item-double: 114px;
 
+body {
+  background:
+  radial-gradient(black 15%, transparent 16%) 0 0,
+  radial-gradient(black 15%, transparent 16%) 8px 8px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#282828;
+  background-size:16px 16px;
+}
+
+h1 {
+  color: $white;
+  font-size: 3em;
+  font-family: VT323;
+  text-align: center;
+  text-shadow: 2px 2px $orange;
+  padding: 1em;
+}
 a, input {
   font-family: 'Montserrat', sans-serif;
 }
