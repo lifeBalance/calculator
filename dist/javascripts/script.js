@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $(function() {
-    $( "#calculator" ).draggable();
+    $("#calculator").draggable();
   });
 
   // Some states
@@ -14,7 +14,6 @@ $(document).ready(function () {
   var buffer;
 
   var operand;
-  // var secondOperand;
   var operator;
 
   // Set the display to '0' at the beginning.
@@ -39,47 +38,51 @@ $(document).ready(function () {
     if (key.num) {
       buildOperand(key, refresh);
     } else if (key.op === 'ac') {
-      // When the AC key is pressed, no matter operationState, initialize
       initialize(refresh);
-    } else { // We have pressed any other operator key (not AC)
-      console.log(operationState);
-      if(!operationState) { // operationState is false (it's the first time we press an operator key)
-        switch (key.op) {
-          case 'equals': // If the first operator is 'equals' we just return.
-          return;
+    } else if (!operationState){ // We have pressed any other operator key (not AC)
+      operationState = true;
 
-          case 'percentage': // If the first operator is 'equals' we just return.
-          percentage(Number(buffer), refresh);
-          break;
+      buffer = Number(operand);
 
-          default:
-          buffer = Number(operand); // Store the operand in the buffer
-          operator = key.op; // Store the operator
-          operationState = true; // Change operationState to true
+      if (key.op === 'percentage') refresh(buffer = buffer / 100);
 
-          // The operand is set to '0' to leave space to the next one,
-          // but the display is not refreshed. As we start introducing
-          // the next operand the display will be refreshed.
-          operand = '0';
-        } // switch
-      } else { // operationState is true (it's the second time we press an operator key)
-        switch (key.op) {
-          case 'percentage':
-          percentage(buffer * Number(operand), refresh);
-          return;
+      // We set the operator for later, when the new operand is introduced
+      operator = key.op;
 
-          case 'equals':
-          refresh(buffer = doTheMath(Number(operand), buffer, operator));
-          operationState = false;
-          break;
+      // The operand is set to '0' to leave space to the next one,
+      // but the display is not refreshed. As we start introducing
+      // the next operand the display will be refreshed.
+      operand = '0';
+    } else {
+      switch (operator) {
+        case 'division':
+        refresh(buffer = divide(buffer, Number(operand)));
+        break;
 
-          default:
-          refresh(buffer = doTheMath(Number(operand), buffer, operator));
-          operationState = false;
-          operator = key.op; // Updating the operator
-          operand = '0';
+        case 'multiplication':
+        if (key.op === 'percentage') {
+          var percent = Number(operand) / 100;
+          refresh(buffer = buffer * percent);
+        } else {
+          refresh(buffer = buffer * Number(operand));
         }
+        break;
+
+        case 'substraction':
+        refresh(buffer = buffer - Number(operand));
+        break;
+
+        case 'addition':
+        refresh(buffer = buffer + Number(operand));
+        break;
+
+        case 'equals':
+        refresh(buffer);
+        break;
       }
+
+      operand = '0';
+      operator = key.op; // Renewing the operator
     }
   } // function calculate
 
@@ -144,28 +147,6 @@ $(document).ready(function () {
     }
   }
 
-  // Doing the calculations
-  function doTheMath(num1, num2, operator, refreshDisplay) {
-    switch (operator) {
-    case 'addition':
-      return num1 + num2;
-      // return refreshDisplay(num1 + num2);
-    case 'substraction':
-      return num1 - num2;
-      // return refreshDisplay(num1 - num2);
-    case 'multiplication':
-      return num1 * num2;
-      // return refreshDisplay(num1 * num2);
-    case 'division':
-      return divide(num1, num2);
-      // return refreshDisplay(divide(num1, num2));
-    case 'equals':
-      return buffer;
-    case 'percentage':
-      return refreshDisplay(percentage());
-    }
-  }
-
   // Division
   function divide(a, b) {
     if(b === 0) {
@@ -179,9 +160,14 @@ $(document).ready(function () {
     return refreshDisplay(num / 100);
   }
 
-  // Refresh display
+  // Refresh and format display (maximum 11 digits)
   function refresh(num) {
-    $('#display').val(num);
+    if (num.toString().length <= 11) {
+      $('#display').val((num));
+    } else {
+      var wholePart = Math.floor(num).toString.length; // number of whole digits
+      $('#display').val((num.toFixed(11 - wholePart)));
+    }
     return num;
   }
 
